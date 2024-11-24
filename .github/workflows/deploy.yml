@@ -19,14 +19,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Inject API Key into the HTML
+      # Step 2: Inject API Key into the JavaScript File
       - name: Inject API Key
         run: |
-          sed -i "s|REPLACE_WITH_API_KEY|${{ secrets.API_KEY }}|g" ask-monroe.html
+          sed -i "s|REPLACE_WITH_API_KEY|${{ secrets.API_KEY }}|g" assets/js/scripts.js
 
       # Step 3: Debug Replacement
       - name: Debug Injected File
-        run: cat ask-monroe.html
+        run: cat assets/js/scripts.js
 
       # Step 4: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
