@@ -30,7 +30,33 @@ header {
   position: relative;
   padding: 0 20px;
 }
+/* DROPDOWN MENU */
+.dropdown-content {
+  display: none; /* Hidden by default */
+  position: absolute;
+  background-color: rgba(52, 73, 94, 0.9); /* Dropdown background */
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow for visibility */
+  padding: 10px; /* Padding inside the dropdown */
+  margin-top: 10px; /* Space between button and dropdown */
+  z-index: 2000; /* Ensure it's above other elements */
+}
 
+.dropdown-content a {
+  color: #ecf0f1; /* Text color */
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block; /* Block layout for links */
+}
+
+.dropdown-content a:hover {
+  background-color: #1abc9c; /* Change background on hover */
+}
+
+/* SHOW DROPDOWN ON HOVER */
+.dropdown:hover .dropdown-content {
+  display: block; /* Show the dropdown */
+}
 header::after {
   content: '';
   position: absolute;
@@ -86,15 +112,16 @@ nav {
   width: 100%;
   background-color: rgba(52, 73, 94, 0.9); /* Transparent nav */
   padding: 10px 0;
-  z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000; /* Ensure navbar is on top */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
-  display: flex;
+  display: flex; /* Visible by default on large screens */
   justify-content: center;
   list-style: none;
   margin: 0;
+  transition: all 0.3s ease-in-out; /* Smooth toggle animation */
 }
 
 nav li {
@@ -228,24 +255,27 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
   outline: none;
 }
 
-/* RESPONSIVE DESIGN */
+/* Responsive styles for mobile */
 @media only screen and (max-width: 768px) {
+  /* Hide navbar by default */
   nav ul {
-    flex-direction: column;
+    display: none;
+    flex-direction: column; /* Stack menu items vertically */
     align-items: center;
-    background-color: rgba(52, 73, 94, 0.9);
+    background-color: rgba(52, 73, 94, 0.9); /* Same background for consistency */
     position: absolute;
-    top: 60px;
+    top: 60px; /* Below the navbar */
     left: 0;
     right: 0;
-    display: none;
     padding: 20px 0;
   }
 
+  /* Show navbar when active */
   nav ul.active {
-    display: flex;
+    display: flex; /* Toggle visibility */
   }
 
+  /* Show hamburger icon */
   .hamburger {
     display: block;
     font-size: 28px;
@@ -254,13 +284,11 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
     position: absolute;
     right: 20px;
     top: 15px;
+    z-index: 1100; /* Ensure hamburger is above everything */
   }
+}
 
-  header h1 {
-    font-size: 2.5rem;
-  }
-
-  .photo-gallery {
-    grid-template-columns: 1fr;
-  }
+/* Hide hamburger icon on larger screens */
+.hamburger {
+  display: none;
 }

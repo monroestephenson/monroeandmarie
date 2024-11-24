@@ -2,14 +2,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize Navigation Menu Toggle (Hamburger)
     const initializeNavbar = () => {
       const hamburger = document.querySelector(".hamburger");
-      const navbar = document.querySelector(".navbar");
-  
+      const navbar = document.querySelector("nav ul");
+    
       if (hamburger && navbar) {
+        // Add event listener for the hamburger click
         hamburger.addEventListener("click", () => {
           navbar.classList.toggle("active");
         });
       }
     };
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      initializeNavbar();
+    });
   
     // Initialize Love Vault
     const initializeLoveVault = () => {
