@@ -12,7 +12,7 @@ jobs:
       name: github-pages
 
     permissions:
-      contents: write # Allow the workflow to write to the repository
+      contents: write
 
     steps:
       # Step 1: Check out the repository
@@ -22,11 +22,11 @@ jobs:
       # Step 2: Inject API Key into the HTML
       - name: Inject API Key
         run: |
-          sed -i "s|REPLACE_WITH_API_KEY|${{ secrets.API_KEY }}|g" ask-monroe.html
+          sed -i "s|REPLACE_WITH_API_KEY|${{ secrets.API_KEY }}|g" path/to/ask-monroe.html
 
-      # Step 3: Debug Replacement (Optional)
+      # Step 3: Debug Replacement
       - name: Debug Injected File
-        run: cat ask-monroe.html
+        run: cat path/to/ask-monroe.html
 
       # Step 4: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
