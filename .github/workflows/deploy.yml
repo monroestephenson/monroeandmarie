@@ -9,7 +9,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
-      name: github-pages # Reference the environment with your secrets
+      name: github-pages
+
+    permissions:
+      contents: write # Allow the workflow to write to the repository
 
     steps:
       # Step 1: Check out the repository
