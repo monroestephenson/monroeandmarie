@@ -151,7 +151,78 @@ document.addEventListener("DOMContentLoaded", () => {
   
       sections.forEach((section) => observer.observe(section));
     };
-  
+    if (document.getElementById("particles-js")) {
+      particlesJS("particles-js", {
+          particles: {
+              number: {
+                  value: 80,
+                  density: {
+                      enable: true,
+                      value_area: 800,
+                  },
+              },
+              color: {
+                  value: "#ffffff",
+              },
+              shape: {
+                  type: "circle",
+              },
+              opacity: {
+                  value: 0.5,
+                  anim: {
+                      enable: true,
+                      speed: 1,
+                      opacity_min: 0.1,
+                  },
+              },
+              size: {
+                  value: 3,
+                  random: true,
+              },
+              line_linked: {
+                  enable: true,
+                  distance: 150,
+                  color: "#ffffff",
+                  opacity: 0.4,
+                  width: 1,
+              },
+              move: {
+                  enable: true,
+                  speed: 2,
+                  direction: "none",
+                  random: true,
+                  out_mode: "out",
+              },
+          },
+          interactivity: {
+              detect_on: "canvas",
+              events: {
+                  onhover: {
+                      enable: true,
+                      mode: "grab",
+                  },
+                  onclick: {
+                      enable: true,
+                      mode: "push",
+                  },
+              },
+              modes: {
+                  grab: {
+                      distance: 140,
+                      line_linked: {
+                          opacity: 1,
+                      },
+                  },
+                  push: {
+                      particles_nb: 4,
+                  },
+              },
+          },
+          retina_detect: true,
+      });
+  } else {
+      console.error("Error: 'particles-js' element not found!");
+  }
     // Initialize All Features
     initializeNavbar();
     initializeLoveVault();
@@ -160,3 +231,121 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeLightbox();
     initializeScrollReveal();
   });
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector(anchor.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  });
+});
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+  document.querySelector("header").style.backgroundPosition = `center ${scrollY * 0.5}px`;
+});
+gsap.fromTo("#tree-ornaments circle", { scale: 0 }, { scale: 1, duration: 1, stagger: 0.3 });
+document.querySelector("#dark-mode-toggle").addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+});
+const counters = document.querySelectorAll(".counter");
+counters.forEach(counter => {
+  const updateCounter = () => {
+    const target = +counter.getAttribute("data-target");
+    const current = +counter.innerText;
+    const increment = target / 100;
+
+    if (current < target) {
+      counter.innerText = Math.ceil(current + increment);
+      setTimeout(updateCounter, 30);
+    } else {
+      counter.innerText = target;
+    }
+  };
+  updateCounter();
+});
+particlesJS("particles-js", {
+  particles: {
+    number: {
+      value: 80,
+      density: {
+        enable: true,
+        value_area: 800,
+      },
+    },
+    color: {
+      value: "#ffffff", // Adjust color for better contrast
+    },
+    shape: {
+      type: "circle", // Change to other shapes like "star", "triangle", etc.
+    },
+    opacity: {
+      value: 0.5,
+      anim: {
+        enable: true,
+        speed: 1,
+        opacity_min: 0.1,
+      },
+    },
+    size: {
+      value: 3,
+      random: true,
+    },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "#ffffff",
+      opacity: 0.4,
+      width: 1,
+    },
+    move: {
+      enable: true,
+      speed: 2,
+      direction: "none",
+      random: true,
+      out_mode: "out",
+    },
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: {
+        enable: true,
+        mode: "grab",
+      },
+      onclick: {
+        enable: true,
+        mode: "push",
+      },
+    },
+    modes: {
+      grab: {
+        distance: 140,
+        line_linked: {
+          opacity: 1,
+        },
+      },
+      push: {
+        particles_nb: 4,
+      },
+    },
+  },
+  retina_detect: true,
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const backToTop = document.getElementById('backToTop');
+  
+  // Show/hide button on scroll
+  window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+          backToTop.classList.add('visible');
+      } else {
+          backToTop.classList.remove('visible');
+      }
+  });
+  
+  // Scroll back to top when clicked
+  backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});

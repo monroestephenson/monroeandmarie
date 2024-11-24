@@ -8,7 +8,7 @@ const model = genAI.getGenerativeModel({
   model: "gemini-1.5-flash",
   generationConfig: {
     maxOutputTokens: 200,
-    temperature: 0.9, // Make responses creative
+    temperature: 0.5, // Make responses creative
   },
 });
 
@@ -26,7 +26,7 @@ submitButton.addEventListener("click", async () => {
   }
 
   // Combine the pre-prompt and user input
-  const prompt = `You are Monroe's heart, overflowing with love and warmth. Respond poetically to this: "${userInput}"`;
+  const prompt = `You are Monroe's heart, overflowing with love and warmth. Respond to this: "${userInput}"`;
 
   // Debugging: log the full prompt
   console.log("Generated Prompt:", prompt);
