@@ -3,25 +3,31 @@ name: Deploy Static Site to GitHub Pages
 on:
   push:
     branches:
-      - main  # Trigger on push to the main branch
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages # Reference the environment with your secrets
 
     steps:
       # Step 1: Check out the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Replace API Key in the HTML file
+      # Step 2: Inject API Key into the HTML
       - name: Inject API Key
         run: |
-          sed -i "s/REPLACE_WITH_API_KEY/${{ secrets.API_KEY }}/g" ask-monroe.html
+          sed -i "s|REPLACE_WITH_API_KEY|${{ secrets.API_KEY }}|g" ask-monroe.html
 
-      # Step 3: Deploy to GitHub Pages
+      # Step 3: Debug Replacement (Optional)
+      - name: Debug Injected File
+        run: cat ask-monroe.html
+
+      # Step 4: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .  # Deploy the current directory
+          publish_dir: .
