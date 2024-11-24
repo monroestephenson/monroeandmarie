@@ -1,0 +1,113 @@
+<!-- ask-monroe.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monroe's Christmas Gift - Ask Monroe</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1>Ask Monroe's Heart</h1>
+    <p>Have a question? Ask away!</p>
+  </header>
+
+  <!-- NAVIGATION MENU -->
+  <nav>
+    <div class="hamburger">&#9776;</div>
+    <ul class="navbar">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="our-journey.html" class="dropbtn">Our Journey</a>
+        <div class="dropdown-content">
+          <a href="our-journey.html#first-date">First Date</a>
+          <a href="our-journey.html#engagement">Engagement</a>
+          <a href="our-journey.html#first-trip">First Trip</a>
+        </div>
+      </li>
+      <li><a href="love-notes.html">Love Notes</a></li>
+      <li><a href="love-counter.html">Love Counter</a></li>
+      <li><a href="photo-wall.html">Photo Wall</a></li>
+      <li><a href="christmas-tree.html">Christmas Tree</a></li>
+      <li><a href="love-vault.html">Love Vault</a></li>
+      <li><a href="playlist.html">Playlist</a></li>
+      <li><a href="thank-you.html">Thank You</a></li>
+      <li><a href="ask-monroe.html">Ask Monroe</a></li>
+    </ul>
+  </nav>
+
+  <!-- INTERACTIVE QUESTION SECTION -->
+  <section id="llm-interaction">
+    <input id="prompt" type="text" placeholder="Ask something like 'How much does Monroe love me?'">
+    <button id="submit">Ask</button>
+    <div id="output"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Made with love by Monroe for Marie, Christmas 2024 ❤️</p>
+  </footer>
+
+  <!-- Import the Google Generative AI SDK -->
+  <script type="importmap">
+    {
+      "imports": {
+        "@google/generative-ai": "https://esm.run/@google/generative-ai"
+      }
+    }
+  </script>
+
+  <!-- JavaScript -->
+  <script type="module">
+    import { GoogleGenerativeAI } from "@google/generative-ai";
+  
+    // Initialize the Generative AI instance
+    const API_KEY = "AIzaSyAbopRRAI5Ja-4u-d04M7h7TdOHU-0iNWQ"; // Your API key
+    const genAI = new GoogleGenerativeAI(API_KEY);
+    const model = genAI.getGenerativeModel({
+      model: "gemini-1.5-flash",
+      generationConfig: {
+        maxOutputTokens: 200,
+        temperature: 0.9, // Make responses creative
+      },
+    });
+  
+    // DOM Elements
+    const submitButton = document.getElementById("submit");
+    const promptInput = document.getElementById("prompt");
+    const outputDiv = document.getElementById("output");
+  
+    // Add click event listener
+    submitButton.addEventListener("click", async () => {
+      const userInput = promptInput.value.trim();
+      if (!userInput) {
+        outputDiv.innerText = "Please enter a question.";
+        return;
+      }
+  
+      // Combine the pre-prompt and user input
+      const prompt = `You are Monroe's heart, overflowing with love and warmth. Respond poetically to this: "${userInput}"`;
+  
+      // Debugging: log the full prompt
+      console.log("Generated Prompt:", prompt);
+  
+      // Display loading message
+      outputDiv.innerText = "Thinking...";
+  
+      try {
+        // Generate content using the Gemini API
+        const result = await model.generateContent(prompt);
+  
+        // Extract and display the response
+        const generatedText = result.response.text();
+        outputDiv.innerText = generatedText;
+      } catch (error) {
+        console.error("Error generating content:", error);
+        outputDiv.innerText = "Something went wrong. Monroe still loves you!";
+      }
+    });
+  </script>
+</body>
+</html>

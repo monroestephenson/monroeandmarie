@@ -1,0 +1,294 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffffff;
+  color: #333333;
+  line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* HEADER / HERO SECTION */
+header {
+  height: 100vh;
+  background: url('../images/header-bg.jpeg') no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  padding: 0 20px;
+}
+/* DROPDOWN MENU */
+.dropdown-content {
+  display: none; /* Hidden by default */
+  position: absolute;
+  background-color: rgba(52, 73, 94, 0.9); /* Dropdown background */
+  min-width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow for visibility */
+  padding: 10px; /* Padding inside the dropdown */
+  margin-top: 10px; /* Space between button and dropdown */
+  z-index: 2000; /* Ensure it's above other elements */
+}
+
+.dropdown-content a {
+  color: #ecf0f1; /* Text color */
+  padding: 8px 12px;
+  text-decoration: none;
+  display: block; /* Block layout for links */
+}
+
+.dropdown-content a:hover {
+  background-color: #1abc9c; /* Change background on hover */
+}
+
+/* SHOW DROPDOWN ON HOVER */
+.dropdown:hover .dropdown-content {
+  display: block; /* Show the dropdown */
+}
+header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(26, 188, 156, 0.6); /* Overlay for better readability */
+  z-index: 1;
+}
+
+header > * {
+  position: relative;
+  z-index: 2;
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+header p {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+header .cta {
+  margin-top: 40px;
+}
+
+header .cta a {
+  padding: 12px 30px;
+  background-color: #1abc9c;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+header .cta a:hover {
+  background-color: #16a085;
+}
+
+/* NAVIGATION */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(52, 73, 94, 0.9); /* Transparent nav */
+  padding: 10px 0;
+  z-index: 1000; /* Ensure navbar is on top */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  display: flex; /* Visible by default on large screens */
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  transition: all 0.3s ease-in-out; /* Smooth toggle animation */
+}
+
+nav li {
+  margin: 0 15px;
+}
+
+nav a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #1abc9c;
+}
+
+/* SECTIONS */
+section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+section p {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+/* PHOTO GALLERY */
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.card p {
+  padding: 15px;
+  font-size: 1rem;
+  color: #7f8c8d;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+/* FOOTER */
+footer {
+  background-color: #34495e;
+  color: #ecf0f1;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+footer p {
+  font-size: 1rem;
+}
+
+/* LOVE COUNTER */
+#love-counter {
+  font-size: 2rem;
+  text-align: center;
+  color: #1abc9c;
+  animation: pulse 2s infinite;
+  margin-top: 40px;
+}
+
+/* BUTTONS */
+button, input[type="button"] {
+  background-color: #1abc9c;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+button:hover, input[type="button"]:hover {
+  background-color: #16a085;
+}
+
+/* FORMS */
+input[type="text"], input[type="email"], textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 20px 0;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+  border-color: #1abc9c;
+  outline: none;
+}
+
+/* Responsive styles for mobile */
+@media only screen and (max-width: 768px) {
+  /* Hide navbar by default */
+  nav ul {
+    display: none;
+    flex-direction: column; /* Stack menu items vertically */
+    align-items: center;
+    background-color: rgba(52, 73, 94, 0.9); /* Same background for consistency */
+    position: absolute;
+    top: 60px; /* Below the navbar */
+    left: 0;
+    right: 0;
+    padding: 20px 0;
+  }
+
+  /* Show navbar when active */
+  nav ul.active {
+    display: flex; /* Toggle visibility */
+  }
+
+  /* Show hamburger icon */
+  .hamburger {
+    display: block;
+    font-size: 28px;
+    color: #ecf0f1;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    z-index: 1100; /* Ensure hamburger is above everything */
+  }
+}
+
+/* Hide hamburger icon on larger screens */
+.hamburger {
+  display: none;
+}
