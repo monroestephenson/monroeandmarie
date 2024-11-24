@@ -8,15 +8,76 @@
   padding: 0;
   scroll-behavior: smooth; /* Smooth scrolling */
 }
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #3898EC;
+  color: white;
+  cursor: pointer;
+  border: none;
+  z-index: 1000;
+  display: none; /* Initially hidden */
+}
 
+#backToTop.visible {
+  display: block; /* Make it visible when the class is added */
+}
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #3898EC;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+      transform: rotate(360deg);
+  }
+}
+#backToTop.visible {
+  display: block;
+}
+h1 {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+}
+.lightbox-modal {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #ffffff;
   color: #333333;
+  background: linear-gradient(135deg, #1abc9c, #2c3e50);
   line-height: 1.6;
   overflow-x: hidden; /* Prevent horizontal scroll */
 }
-
+#particles-js {
+  background: linear-gradient(135deg, #1abc9c, #2c3e50);
+}
+header, main, footer {
+  position: relative;
+  z-index: 2;
+}
 /* HEADER / HERO SECTION */
 header {
   height: 100vh;
@@ -48,11 +109,25 @@ header {
   text-decoration: none;
   display: block; /* Block layout for links */
 }
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
 
+#tree-ornaments circle {
+  animation: float 2s infinite ease-in-out;
+}
 .dropdown-content a:hover {
   background-color: #1abc9c; /* Change background on hover */
 }
-
+body.dark-mode {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+}
 /* SHOW DROPDOWN ON HOVER */
 .dropdown:hover .dropdown-content {
   display: block; /* Show the dropdown */
@@ -116,6 +191,12 @@ nav {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(52, 73, 94, 0.9);
+}
 nav ul {
   display: flex; /* Visible by default on large screens */
   justify-content: center;
@@ -237,8 +318,28 @@ button, input[type="button"] {
 
 button:hover, input[type="button"]:hover {
   background-color: #16a085;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease-in-out;
+}
+#particles-js {
+  position: fixed; /* Fixed to viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1; /* Behind all other elements */
+  background: transparent; /* Ensure transparency */
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 /* FORMS */
 input[type="text"], input[type="email"], textarea {
   width: 100%;
