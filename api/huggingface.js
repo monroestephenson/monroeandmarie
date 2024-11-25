@@ -2,36 +2,36 @@ import fetch from "node-fetch";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-    res.status(405).json({ error: "Method not allowed" });
-    return;
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { inputs, parameters } = req.body;
+  const HUGGINGFACE_API_KEY = process.env.HUGGINGFACE_API_KEY; // Set this in Vercel Environment Variables
+  const { prompt } = req.body;
+
+  if (!prompt) {
+    return res.status(400).json({ error: "Prompt is required" });
+  }
 
   try {
     const response = await fetch("https://api-inference.huggingface.co/models/openai-community/gpt2", {
       method: "POST",
       headers: {
-        Authorization: `Bearer YOUR_HUGGINGFACE_API_KEY`,
+        Authorization: `Bearer ${HUGGINGFACE_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        inputs: inputs || "Default input text", // Default input if none provided
-        parameters: parameters || { max_new_tokens: 50, temperature: 0.7 }, // Default parameters
+        inputs: prompt,
       }),
     });
 
     if (!response.ok) {
-      const errorDetails = await response.json();
-      console.error("Error from Hugging Face API:", errorDetails);
-      res.status(response.status).json(errorDetails);
-      return;
+      throw new Error(`Hugging Face API Error: ${response.statusText}`);
     }
 
-    const result = await response.json();
-    res.status(200).json(result);
+    const data = await response.json();
+    res.status(200).json({ response: data[0]?.generated_text || "No response generated." });
   } catch (error) {
-    console.error("Server Error:", error);
-    res.status(500).json({ error: "Internal Server Error", details: error.message });
+    console.error("Error communicating with Hugging Face API:", error);
+    res.status(500).json({ error: "Failed to generate content." });
   }
 }
