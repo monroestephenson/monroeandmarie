@@ -11,9 +11,6 @@ submitButton.addEventListener("click", async () => {
     return;
   }
 
-  // Combine the pre-prompt and user input
-  const prompt = `You are Monroe's heart, overflowing with love and warmth. Respond to this: "${userInput}"`;
-
   // Display loading message
   outputDiv.innerText = "Thinking...";
 
@@ -24,14 +21,7 @@ submitButton.addEventListener("click", async () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        prompt,
-        model: "gemini-1.5-flash-latest",
-        parameters: {
-          maxOutputTokens: 200,
-          temperature: 0.7,
-        },
-      }),
+      body: JSON.stringify({ prompt: userInput }),
     });
 
     if (!response.ok) {
