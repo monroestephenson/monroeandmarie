@@ -18,13 +18,20 @@ submitButton.addEventListener("click", async () => {
   outputDiv.innerText = "Thinking...";
 
   try {
-    // Send request to Vercel backend
+    // Send request to Vercel backend (updated endpoint)
     const response = await fetch("https://monroeandmarie.vercel.app/api/gemini", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ prompt }),
+      body: JSON.stringify({
+        prompt,
+        model: "gemini-1.5-flash-latest",
+        parameters: {
+          maxOutputTokens: 200,
+          temperature: 0.7,
+        },
+      }),
     });
 
     if (!response.ok) {
