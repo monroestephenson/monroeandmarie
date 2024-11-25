@@ -2,7 +2,7 @@
     "version": 2,
     "build": {
       "env": {
-        "GEMINI_API_KEY": "@gemini_api_key"
+        "MY_GEMINI_API_KEY": "@gemini_api_key"
       }
     },
     "rewrites": [
