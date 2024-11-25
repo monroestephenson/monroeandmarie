@@ -31,7 +31,7 @@ export default async function handler(req, res) {
             {
               parts: [
                 {
-                  text: prompt, // Pass the user prompt
+                  text: prompt, // Send the user prompt
                 },
               ],
             },
@@ -46,8 +46,10 @@ export default async function handler(req, res) {
     }
 
     const data = await response.json();
+
+    // Extract the generated content
     const generatedContent =
-      data?.contents?.[0]?.parts?.[0]?.text || "No response generated.";
+      data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
 
     res.status(200).json({ response: generatedContent });
   } catch (error) {
