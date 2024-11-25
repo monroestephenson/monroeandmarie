@@ -19,7 +19,7 @@ submitButton.addEventListener("click", async () => {
 
   try {
     // Send request to Vercel backend
-    const response = await fetch("https://monroeandmarie.vercel.app/api/huggingface", {
+    const response = await fetch("https://monroeandmarie.vercel.app/api/gemini", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
