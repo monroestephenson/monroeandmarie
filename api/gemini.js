@@ -1,6 +1,5 @@
 import fetch from "node-fetch";
 
-
 export default async function handler(req, res) {
   // Add CORS headers
   res.setHeader("Access-Control-Allow-Origin", "https://marieandmonroe.com"); // Allow requests from your frontend domain
@@ -15,7 +14,6 @@ export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
-
 
   const GEMINI_API_KEY = process.env.MY_GEMINI_API_KEY;
 
@@ -39,12 +37,11 @@ export default async function handler(req, res) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          prompt,
-          model: "gemini-1.5-flash",
-          parameters: {
-            maxOutputTokens: 200,
-            temperature: 0.7,
+          prompt: {
+            text: prompt, // Input prompt text
           },
+          temperature: 0.7,
+          maxOutputTokens: 200,
         }),
       }
     );
@@ -55,10 +52,11 @@ export default async function handler(req, res) {
     }
 
     const data = await response.json();
-    const generatedContent = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
 
-    // Allow CORS in the actual response
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    // Extracting the generated text from the API response
+    const generatedContent =
+      data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
+
     res.status(200).json({ response: generatedContent });
   } catch (error) {
     console.error("Error communicating with Gemini API:", error);
