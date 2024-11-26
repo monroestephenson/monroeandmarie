@@ -1,6 +1,31 @@
+import Cors from "cors";
 import fetch from "node-fetch";
 
+// Utility function to initialize middleware
+function initMiddleware(middleware) {
+  return (req, res) =>
+    new Promise((resolve, reject) => {
+      middleware(req, res, (result) => {
+        if (result instanceof Error) {
+          return reject(result);
+        }
+        return resolve(result);
+      });
+    });
+}
+
+// Initialize the middleware
+const cors = initMiddleware(
+  Cors({
+    origin: "https://marieandmonroe.com", // Allow only your production domain
+    methods: ["POST", "OPTIONS"], // Allowed methods
+  })
+);
+
 export default async function handler(req, res) {
+  // Run the CORS middleware
+  await cors(req, res);
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
