@@ -162,7 +162,81 @@ header {
   margin: 20px auto;
   max-width: 90%;
 }
+/* Love Notes Section */
+#love-notes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: #333;
+  border-radius: 15px;
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
 
+#love-notes h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.notes-carousel {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.note {
+  min-width: 100%;
+  padding: 20px;
+  font-size: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.note.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.carousel-controls button {
+  background-color: #fff;
+  border: none;
+  color: #333;
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.carousel-controls button:hover {
+  background-color: #ffd1dc;
+  color: #fff;
+}
+
+.carousel-controls button:focus {
+  outline: none;
+}
 #christmas-tree img {
   width: 80%; /* Adjust size dynamically */
   max-width: 400px; /* Limit the maximum size */
