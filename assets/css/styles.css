@@ -21,7 +21,43 @@
   z-index: 1000;
   display: none; /* Initially hidden */
 }
+/* Masonry Photo Gallery */
+.masonry-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+  padding: 10px;
+}
 
+.photo-card {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.photo-card img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+.photo-card p {
+  padding: 10px;
+  font-size: 0.9rem;
+  color: #555;
+  background: #f8f8f8;
+}
+
+.photo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
 #backToTop.visible {
   display: block; /* Make it visible when the class is added */
 }
@@ -117,7 +153,27 @@ header {
     transform: translateY(-10px);
   }
 }
+/* Christmas Tree Section */
+#christmas-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 20px auto;
+  max-width: 90%;
+}
 
+#christmas-tree img {
+  width: 80%; /* Adjust size dynamically */
+  max-width: 400px; /* Limit the maximum size */
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 20px; /* Space between tree and text */
+}
+
+#christmas-tree p {
+  font-size: 1rem;
+  color: #555;
+}
 #tree-ornaments circle {
   animation: float 2s infinite ease-in-out;
 }
