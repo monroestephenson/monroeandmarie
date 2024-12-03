@@ -349,3 +349,45 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const notes = document.querySelectorAll(".note");
+  const prevButton = document.getElementById("prev");
+  const nextButton = document.getElementById("next");
+
+  let currentNoteIndex = 0; // Start with the first note
+
+  // Function to display the current note
+  function showNote(index) {
+    notes.forEach((note, i) => {
+      note.classList.remove("active");
+      if (i === index) {
+        note.classList.add("active");
+      }
+    });
+  }
+
+  // Navigate to the next note
+  function nextNote() {
+    currentNoteIndex = (currentNoteIndex + 1) % notes.length; // Loop back to the start
+    showNote(currentNoteIndex);
+  }
+
+  // Navigate to the previous note
+  function prevNote() {
+    currentNoteIndex = (currentNoteIndex - 1 + notes.length) % notes.length; // Loop to the end
+    showNote(currentNoteIndex);
+  }
+
+  // Event listeners for navigation buttons
+  if (nextButton && prevButton) {
+    nextButton.addEventListener("click", nextNote);
+    prevButton.addEventListener("click", prevNote);
+  }
+
+  // Initialize by showing the first note
+  showNote(currentNoteIndex);
+
+  // Optional: Auto-scroll through the notes every 5 seconds
+  setInterval(nextNote, 5000);
+});
