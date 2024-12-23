@@ -523,3 +523,100 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
 .hamburger {
   display: none;
 }
+/* Timeline Section */
+#timeline {
+  background: transparent;
+  padding: 50px 20px;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+#timeline .timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+#timeline .milestone {
+  background: rgba(255, 255, 255, 0.1); /* Transparent card */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+#timeline .milestone:hover {
+  transform: scale(1.05); /* Slight hover effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+#timeline .milestone h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #ffd700; /* Gold color for headings */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#timeline .milestone p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #ffffff;
+  text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.5);
+}
+#timeline .milestone {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+/* Navigation Menu */
+nav {
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+nav .navbar {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+nav .navbar li {
+  display: inline;
+}
+
+nav .navbar li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+nav .navbar li a:hover {
+  color: #ffd700; /* Gold on hover */
+}
+footer {
+  background: #222;
+  color: #aaa;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 1rem;
+}
+
+footer p {
+  margin: 0;
+  color: #ffd700; /* Gold text */
+}
