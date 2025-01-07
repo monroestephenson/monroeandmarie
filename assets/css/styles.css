@@ -169,7 +169,7 @@ header {
   align-items: center;
   text-align: center;
   padding: 40px 20px;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  background: linear-gradient(135deg, #37cbf3, #059a83);
   color: #333;
   border-radius: 15px;
   margin: 20px auto;
@@ -310,47 +310,6 @@ header .cta a:hover {
   background-color: #16a085;
 }
 
-/* NAVIGATION */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: rgba(52, 73, 94, 0.9); /* Transparent nav */
-  padding: 10px 0;
-  z-index: 1000; /* Ensure navbar is on top */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: rgba(52, 73, 94, 0.9);
-}
-nav ul {
-  display: flex; /* Visible by default on large screens */
-  justify-content: center;
-  list-style: none;
-  margin: 0;
-  transition: all 0.3s ease-in-out; /* Smooth toggle animation */
-}
-
-nav li {
-  margin: 0 15px;
-}
-
-nav a {
-  color: #ecf0f1;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  text-transform: uppercase;
-  transition: color 0.3s;
-}
-
-nav a:hover {
-  color: #1abc9c;
-}
 
 /* SECTIONS */
 section {
@@ -486,39 +445,6 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
   outline: none;
 }
 
-/* Responsive styles for mobile */
-@media only screen and (max-width: 768px) {
-  /* Hide navbar by default */
-  nav ul {
-    display: none;
-    flex-direction: column; /* Stack menu items vertically */
-    align-items: center;
-    background-color: rgba(52, 73, 94, 0.9); /* Same background for consistency */
-    position: absolute;
-    top: 60px; /* Below the navbar */
-    left: 0;
-    right: 0;
-    padding: 20px 0;
-  }
-
-  /* Show navbar when active */
-  nav ul.active {
-    display: flex; /* Toggle visibility */
-  }
-
-  /* Show hamburger icon */
-  .hamburger {
-    display: block;
-    font-size: 28px;
-    color: #ecf0f1;
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    z-index: 1100; /* Ensure hamburger is above everything */
-  }
-}
-
 /* Hide hamburger icon on larger screens */
 .hamburger {
   display: none;
@@ -580,12 +506,18 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
   }
 }
 /* Navigation Menu */
+/* General Navigation Styles */
 nav {
-  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(52, 73, 94, 0.9);
   padding: 10px 20px;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-nav .navbar {
+.navbar {
   list-style: none;
   display: flex;
   justify-content: center;
@@ -594,29 +526,89 @@ nav .navbar {
   margin: 0;
 }
 
-nav .navbar li {
-  display: inline;
-}
-
-nav .navbar li a {
+.navbar li a {
   text-decoration: none;
-  color: #fff;
-  font-size: 1.1rem;
+  color: #ecf0f1;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
   transition: color 0.3s;
 }
 
-nav .navbar li a:hover {
-  color: #ffd700; /* Gold on hover */
-}
-footer {
-  background: #222;
-  color: #aaa;
-  text-align: center;
-  padding: 20px 0;
-  font-size: 1rem;
+.navbar li a:hover {
+  color: #1abc9c;
 }
 
-footer p {
-  margin: 0;
-  color: #ffd700; /* Gold text */
+/* Hamburger Menu Styles */
+.hamburger {
+  display: none; /* Hidden on desktop */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1100;
+}
+
+.hamburger:focus {
+  outline: none;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background-color: #ecf0f1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Transformations for Active State */
+.hamburger.active .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Responsive Styles for Mobile */
+@media screen and (max-width: 768px) {
+  /* Show hamburger on mobile */
+  .hamburger {
+    display: flex;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+  }
+
+  /* Hide navbar by default */
+  .navbar {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(52, 73, 94, 0.95);
+    position: fixed;
+    top: 60px; /* Height of navbar */
+    left: -100%; /* Start off-screen */
+    width: 100%;
+    height: calc(100vh - 60px);
+    padding: 20px 0;
+    transition: left 0.3s ease-in-out;
+  }
+
+  /* Show navbar when active */
+  .navbar.active {
+    left: 0;
+    display: flex;
+  }
+
+  .navbar li {
+    margin: 15px 0;
+  }
 }
