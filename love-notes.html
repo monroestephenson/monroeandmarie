@@ -18,7 +18,11 @@
 
   <!-- NAVIGATION MENU -->
   <nav>
-    <div class="hamburger">&#9776;</div>
+    <button class="hamburger" aria-label="Toggle navigation">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button> 
     <ul class="navbar">
       <li><a href="index.html">Home</a></li>
       <li class="dropdown">
@@ -37,20 +41,21 @@
   </nav>
 
   <!-- LOVE NOTES SECTION -->
-  <section id="love-notes">
-    <h2>Heartfelt Love Notes</h2>
-    <div class="notes-carousel">
-      <div class="note">"You light up my world every day!"</div>
-      <div class="note">"Your laugh is my favorite sound."</div>
-      <div class="note">"You make everything feel magical."</div>
-      <div class="note">"Being with you feels like home."</div>
-      <div class="note">"I cherish every moment we share."</div>
-    </div>
-    <div class="carousel-controls">
-      <button id="prev">❮</button>
-      <button id="next">❯</button>
-    </div>
-  </section>
+ <!-- LOVE NOTES SECTION -->
+<section id="love-notes">
+  <h2>Heartfelt Love Notes</h2>
+  <div class="notes-carousel">
+    <div class="note active">"You light up my world every day!"</div>
+    <div class="note">"Your laugh is my favorite sound."</div>
+    <div class="note">"You make everything feel magical."</div>
+    <div class="note">"Being with you feels like home."</div>
+    <div class="note">"I cherish every moment we share."</div>
+  </div>
+  <div class="carousel-controls">
+    <button id="prev">❮</button>
+    <button id="next">❯</button>
+  </div>
+</section>
 
   <!-- FOOTER -->
   <footer>
@@ -59,6 +64,7 @@
 
   <!-- JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <script src="assets/js/scripts2.js"></script>
+  <script src="assets/js/carosel.js"></script>
+  <!-- <script src="assets/js/scripts2.js"></script> -->
 </body>
 </html>
